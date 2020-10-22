@@ -118,7 +118,6 @@ class App extends Component {
         var result= eval(this.state.formula)
         this.setState(state=>
           ({currentValue:result, formula:state.formula+value+result}))
-        console.log(result)
         break
         
       case 'AC':
