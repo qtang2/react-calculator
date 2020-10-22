@@ -18,6 +18,9 @@ class App extends Component {
     this.handleClick= this.handleClick.bind(this)
   }
 
+  validDigits = ()=>
+    this.state.formula.length<11
+  
 
   reset = ()=>{
     this.setState({currentValue:'0',formula:''})
@@ -36,25 +39,32 @@ class App extends Component {
       case '7':
       case '8':
       case '9':
-        if(this.state.currentValue ==='0'){
-          this.setState({currentValue:value,formula:value})
-          break
-        }
-        else if(this.state.currentValue[this.state.currentValue.length-1] ==='.'){
-          this.setState(state=>
-            ({currentValue:this.state.currentValue + value, formula:state.formula + value}))
-          break
-        }
-        else if(operators.includes(this.state.currentValue)){
-          this.setState(state=>
-            ({currentValue: value, formula:state.formula + value}))
-          break
-        }
-        else{
-          this.setState(state=>
-            ({currentValue:state.currentValue+value,formula: state.formula+value}))
-          break
-        }
+        // if(this.validDigits()){
+        //   console.log(this.validDigits)
+          if(this.state.currentValue ==='0'){
+            this.setState({currentValue:value,formula:value})
+            break
+          }
+          else if(this.state.currentValue[this.state.currentValue.length-1] ==='.'){
+            this.setState(state=>
+              ({currentValue:this.state.currentValue + value, formula:state.formula + value}))
+            break
+          }
+          else if(operators.includes(this.state.currentValue)){
+            this.setState(state=>
+              ({currentValue: value, formula:state.formula + value}))
+            break
+          }
+          else{
+            this.setState(state=>
+              ({currentValue:state.currentValue+value,formula: state.formula+value}))
+            break
+          }
+        // }
+        // else{
+        //   alert("Number too large,clear inputs and try again")
+        //   break
+        // }
 
       case '0':
         if(this.state.formula ===''){
@@ -115,7 +125,7 @@ class App extends Component {
         }
 
       case '=':
-        var result= eval(this.state.formula)
+        var result= Math.round(1000000000000 * eval(this.state.formula)) / 1000000000000
         this.setState(state=>
           ({currentValue:result, formula:state.formula+value+result}))
         break
