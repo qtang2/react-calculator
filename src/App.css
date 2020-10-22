@@ -1,23 +1,48 @@
 .App {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .calculator-container {
-  background-color: pink;
+  background-color: #1c1c1c;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 250px;
-  margin-top: 30px;
+  width: 290px;
+  /* margin-top: 10vh; */
+  color: white;
+  border-radius: 10px;
 }
 
 .buttons-container {
-  width: 250px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.left-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 180px;
+  color: pink;
+}
+.right-container {
+  width: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.operators-color {
+  background-color: #ff9500;
+  color: white;
+}
+
+.nums-color {
+  background-color: #505050;
+  color: white;
 }
 
 .regular-btn {
@@ -25,32 +50,61 @@
   width: 50px;
   border-radius: 50%;
   margin: 5px;
+  border-style: none;
+  font-size: 23px;
+  /* background-color: #505050; */
 }
-.large-btn {
+
+button:hover {
+  background-color: #009cdf;
+}
+
+button:focus {
+  outline: none;
+}
+
+.large-btn-h {
   margin: 5px;
-  width: 100px;
+  width: 110px;
   height: 50px;
-  border-top-left-radius: 30%;
-  border-top-right-radius: 30%;
-  border-bottom-left-radius: 30%;
-  border-bottom-right-radius: 30%;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-style: none;
+  font-size: 23px;
+}
+.large-btn-v {
+  margin: 5px;
+  height: 110px;
+  width: 50px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-style: none;
+  color: white;
+  font-size: 23px;
 }
 
 #display {
-  border: 1px solid;
+  /* border: 1px solid; */
   width: 220px;
-  height: 20px;
+  height: 35px;
   margin-top: 10px;
   margin-bottom: 10px;
   display: flex;
   justify-content: flex-end;
+  font-size: 28px;
 }
 
 #formula {
-  border: 1px solid;
+  /* border: 1px solid; */
   width: 220px;
-  height: 20px;
+  height: 25px;
   display: flex;
   justify-content: flex-end;
   margin-top: 15px;
+  font-size: 22px;
+  color: #ff9500;
 }

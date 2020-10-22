@@ -19,27 +19,13 @@ class App extends Component {
   }
 
 
-  updateCurVal = val =>{
-    if(this.state.currentValue ==='0'){
-      this.setState({currentValue:val})
-    }
-    else{
-      this.setState(state=>({currentValue: state.currentValue+val}))
-    }
-    
-  }
-
-  calTotalVal = () =>{
-
-  }
-
   reset = ()=>{
     this.setState({currentValue:'0',formula:''})
   }
 
   handleClick(value){
     console.log(value)
-    console.log("formula   "+ this.state.formula)
+    console.log("currentValue   "+ this.state.currentValue)
     switch (value){
       case '1':
       case '2':
@@ -54,16 +40,19 @@ class App extends Component {
           this.setState({currentValue:value,formula:value})
           break
         }
-        else if(this.state.currentValue[this.state.currentValue.length-1] ==='.'|| this.state.currentValue[this.state.currentValue.length-1] ==='-'){
-          this.setState(state=>({currentValue:this.state.currentValue + value, formula:state.formula + value}))
+        else if(this.state.currentValue[this.state.currentValue.length-1] ==='.'){
+          this.setState(state=>
+            ({currentValue:this.state.currentValue + value, formula:state.formula + value}))
           break
         }
         else if(operators.includes(this.state.currentValue)){
-          this.setState(state=>({currentValue: value, formula:state.formula + value}))
+          this.setState(state=>
+            ({currentValue: value, formula:state.formula + value}))
           break
         }
         else{
-          this.setState(state=>({currentValue:state.currentValue+value,formula: state.formula+value}))
+          this.setState(state=>
+            ({currentValue:state.currentValue+value,formula: state.formula+value}))
           break
         }
 
@@ -80,39 +69,41 @@ class App extends Component {
           break
         }
         else {
-          this.setState(state=>({currentValue:state.currentValue+value,formula: state.formula+value}))
+          this.setState(state=>
+            ({currentValue:state.currentValue+value,formula: state.formula+value}))
           break
         }
-
-
       
       case '.':
         if(this.state.currentValue ==='0'){
-          this.setState(state =>({currentValue: state.currentValue+value, formula:state.currentValue+value}))
+          this.setState(state =>
+            ({currentValue: state.currentValue+value, formula:state.currentValue+value}))
           break
         }
         else{
-          this.setState(state=>({currentValue:state.currentValue+value,formula: state.formula+value}))
+          if(!operators.includes(this.state.currentValue))
+          this.setState(state=>
+            ({currentValue:state.currentValue+value,formula: state.formula+value}))
           break
         }
-
    
       case '+':
       case '*':
       case '/':
         if(this.state.formula.length!==0){
           if(!operators.includes(this.state.currentValue))
-          this.setState(state=>({currentValue:value,formula: state.formula+value}))
+          this.setState(state=>
+            ({currentValue:value,formula: state.formula+value}))
           break
         }else{
           break
         }
 
-
       case '-':
         if(this.state.formula.length!==0){
           if(this.state.currentValue!=='-'){
-            this.setState(state=>({currentValue:value,formula: state.formula+value}))
+            this.setState(state=>
+              ({currentValue:value,formula: state.formula+value}))
             break
           }else{
             break
@@ -123,17 +114,16 @@ class App extends Component {
           break
         }
 
-
       case '=':
         var result= eval(this.state.formula)
-        this.setState(state=>({currentValue:result, formula:state.formula+value+result}))
+        this.setState(state=>
+          ({currentValue:result, formula:state.formula+value+result}))
         console.log(result)
         break
         
       case 'AC':
         this.reset()
         break
-      
       
       default:
         console.log("default")
@@ -144,11 +134,17 @@ class App extends Component {
   render(){
     return (
       <div className="App">
+      <div>
+      <h2>Welcome to Claculator</h2>
+      <p>Click to calculate</p>
+      </div>
+      
         <div className="calculator-container">
           <Formula formula={this.state.formula}/>
           <Output currentValue={this.state.currentValue}/>
           <Buttons onClick={this.handleClick}/>
         </div>
+        <label>© Qian Tang  2020</label>
       </div>
     );
   }
