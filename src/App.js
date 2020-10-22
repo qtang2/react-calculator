@@ -1,26 +1,158 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Buttons from './components/Buttons';
+import Formula from './components/Formula';
+import Output from './components/Output';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const operators=['+',"-","*","/","%","AC","="]
+class App extends Component {
+
+  constructor(props){
+    super(props)
+    this.state={
+      formula:'',
+      currentValue:'0',
+    }
+
+    this.handleClick= this.handleClick.bind(this)
+  }
+
+
+  updateCurVal = val =>{
+    if(this.state.currentValue ==='0'){
+      this.setState({currentValue:val})
+    }
+    else{
+      this.setState(state=>({currentValue: state.currentValue+val}))
+    }
+    
+  }
+
+  calTotalVal = () =>{
+
+  }
+
+  reset = ()=>{
+    this.setState({currentValue:'0',formula:''})
+  }
+
+  handleClick(value){
+    console.log(value)
+    console.log("formula   "+ this.state.formula)
+    switch (value){
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+        if(this.state.currentValue ==='0'){
+          this.setState({currentValue:value,formula:value})
+          break
+        }
+        else if(this.state.currentValue[this.state.currentValue.length-1] ==='.'|| this.state.currentValue[this.state.currentValue.length-1] ==='-'){
+          this.setState(state=>({currentValue:this.state.currentValue + value, formula:state.formula + value}))
+          break
+        }
+        else if(operators.includes(this.state.currentValue)){
+          this.setState(state=>({currentValue: value, formula:state.formula + value}))
+          break
+        }
+        else{
+          this.setState(state=>({currentValue:state.currentValue+value,formula: state.formula+value}))
+          break
+        }
+
+      case '0':
+        if(this.state.formula ===''){
+          this.setState({currentValue:value,formula:value})
+          break
+        }
+        else if(this.state.formula==='0'){
+          break
+        }
+        else if(this.state.formula.includes("=")){
+          this.reset()
+          break
+        }
+        else {
+          this.setState(state=>({currentValue:state.currentValue+value,formula: state.formula+value}))
+          break
+        }
+
+
+      
+      case '.':
+        if(this.state.currentValue ==='0'){
+          this.setState(state =>({currentValue: state.currentValue+value, formula:state.currentValue+value}))
+          break
+        }
+        else{
+          this.setState(state=>({currentValue:state.currentValue+value,formula: state.formula+value}))
+          break
+        }
+
+   
+      case '+':
+      case '*':
+      case '/':
+        if(this.state.formula.length!==0){
+          if(!operators.includes(this.state.currentValue))
+          this.setState(state=>({currentValue:value,formula: state.formula+value}))
+          break
+        }else{
+          break
+        }
+
+
+      case '-':
+        if(this.state.formula.length!==0){
+          if(this.state.currentValue!=='-'){
+            this.setState(state=>({currentValue:value,formula: state.formula+value}))
+            break
+          }else{
+            break
+          }
+          
+        }else{
+          this.setState({currentValue:value,formula:value})
+          break
+        }
+
+
+      case '=':
+        var result= eval(this.state.formula)
+        this.setState(state=>({currentValue:result, formula:state.formula+value+result}))
+        console.log(result)
+        break
+        
+      case 'AC':
+        this.reset()
+        break
+      
+      
+      default:
+        console.log("default")
+        break;
+    }
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <div className="calculator-container">
+          <Formula formula={this.state.formula}/>
+          <Output currentValue={this.state.currentValue}/>
+          <Buttons onClick={this.handleClick}/>
+        </div>
+      </div>
+    );
+  }
+  
 }
 
 export default App;
