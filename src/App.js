@@ -135,8 +135,8 @@ class App extends Component {
     return (
       <div className="App">
       <div>
-      <h2>Welcome to Claculator</h2>
-      <p>Click to calculate</p>
+        <h2>Welcome to Claculator</h2>
+        <p>Click to calculate</p>
       </div>
       
         <div className="calculator-container">
