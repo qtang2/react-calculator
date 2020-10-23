@@ -8,8 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 290px;
-  /* margin-top: 10vh; */
+  width: 400px;
   color: white;
   border-radius: 10px;
 }
@@ -25,11 +24,11 @@
 .left-container {
   display: flex;
   flex-wrap: wrap;
-  width: 180px;
+  width: 250px;
   color: pink;
 }
 .right-container {
-  width: 60px;
+  width: 80px;
   display: flex;
   flex-wrap: wrap;
   color: white;
@@ -46,8 +45,8 @@
 }
 
 .regular-btn {
-  height: 50px;
-  width: 50px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   margin: 5px;
   border-style: none;
@@ -101,10 +100,12 @@ button:focus {
 #formula {
   /* border: 1px solid; */
   width: 220px;
-  height: 25px;
-  display: flex;
-  justify-content: flex-end;
+  min-height: 25px;
+  text-align: end;
   margin-top: 15px;
-  font-size: 22px;
+  font-size: 20px;
   color: #ff9500;
+  line-height: 20px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }

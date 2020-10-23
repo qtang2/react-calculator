@@ -26,10 +26,21 @@ class App extends Component {
   //   this.state.formula.length<23
   
 
-  // reset = ()=>{
-  //   this.setState({currentValue:'0',formula:''})
-  // }
+  reset = ()=>{
+    this.setState({curNum:'0',calc:undefined,operation:undefined,formula:'',display:'0'})
+  }
 
+  calcResult = (expression)=>{
+    return (Math.round(1000000000000*eval(expression))/1000000000000).toString(10)
+  }
+
+  maxDigitsWarning=()=>{
+    const {curNum,display} = this.state
+    this.setState({display: "Digit limit met"})
+    setTimeout(() => {
+      this.setState(state=>({display: state.curNum}))
+    }, 1000);
+  }
 
   handle(e){
     const {value} = e.target
@@ -45,8 +56,13 @@ class App extends Component {
           this.setState({
             curNum: value,formula:formula+value,display:value})
         }else{
-          this.setState({
-            curNum: curNum+value,formula:curNum+value,display:curNum+value})
+          if(curNum.length>12){
+            this.maxDigitsWarning()
+          }else{
+            this.setState({
+              curNum: curNum+value,formula:formula+value,display:display+value})
+          }
+          
         }
       }
       
@@ -57,7 +73,7 @@ class App extends Component {
 
     switch(value){
       case 'AC':
-          this.setState({curNum:'0',calc:undefined,operation:undefined,formula:'',display:'0'})
+          this.reset()
           break
       case '.':
         if(!curNum.includes('.')){
@@ -104,7 +120,7 @@ class App extends Component {
                 })
             }
             else{
-              const evaluated = Math.round(1000000000000*eval(`${calc}${operation}${curNum}`))/1000000000000 
+              const evaluated = this.calcResult(`${calc}${operation}${curNum}`)
               this.setState({
               operation: value,
               calc: evaluated,
@@ -124,7 +140,7 @@ class App extends Component {
                 display:value
               })
             }else{
-              const evaluated = Math.round(1000000000000*eval(`${calc}${operation}${curNum}`))/1000000000000
+              const evaluated = this.calcResult(`${calc}${operation}${curNum}`)
               console.log(typeof formula)
               this.setState({
                 operation:value,
