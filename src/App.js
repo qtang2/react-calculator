@@ -154,9 +154,8 @@ class App extends Component {
       <div className="App">
       <div>
         <h2>Welcome to Claculator</h2>
-        <p>This calculator is using immediate execution logic ,cclick to calculate</p>
+        <p>This calculator is using immediate execution logic, click to calculate</p>
       </div>
-      
         <div className="calculator-container">
           <Formula formula={formula}/>
           <Output currentValue={display}/>
