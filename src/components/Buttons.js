@@ -11,7 +11,7 @@ class Buttons extends Component {
 
     buttonClick(e){
         const value = e.target.value
-        this.props.onClick(value)
+        this.props.onClick(e)
     }
 
     render(){
