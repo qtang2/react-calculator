@@ -18,13 +18,9 @@ class App extends Component {
       operation: undefined
     }
 
-    // this.handleClick= this.handleClick.bind(this)
     this.handle = this.handle.bind(this)
   }
 
-  // validDigits = ()=>
-  //   this.state.formula.length<23
-  
 
   reset = ()=>{
     this.setState({curNum:'0',calc:undefined,operation:undefined,formula:'',display:'0'})
@@ -35,7 +31,6 @@ class App extends Component {
   }
 
   maxDigitsWarning=()=>{
-    const {curNum,display} = this.state
     this.setState({display: "Digit limit met"})
     setTimeout(() => {
       this.setState(state=>({display: state.curNum}))
@@ -86,8 +81,6 @@ class App extends Component {
         //if operator is empty
         if(!operation){
           //enter a number and enter '='
-          console.log("!!!!!!")
-          // console.log("before ,,,, "+ "value" + value + " "+ formula + " "+display +" "+ curNum)
           if(value==='='){
             this.setState({
               operation:value,
@@ -155,127 +148,13 @@ class App extends Component {
         }
     }
 
-  
-  //TODO: Need to handle max digits and after equal, not allow input
-  // handleClick(value){
-  //   console.log(value)
-  //   console.log("currentValue   "+ this.state.currentValue)
-  //     switch (value){
-  //       case '1':
-  //       case '2':
-  //       case '3':
-  //       case '4':
-  //       case '5':
-  //       case '6':
-  //       case '7':
-  //       case '8':
-  //       case '9':
-          
-  //           if(this.state.currentValue ==='0'){
-  //             this.setState({currentValue:value,formula:value})
-  //             break
-  //           }
-  //           else if(this.state.currentValue[this.state.currentValue.length-1] ==='.'){
-  //             this.setState(state=>
-  //               ({currentValue:this.state.currentValue + value, formula:state.formula + value}))
-  //             break
-  //           }
-  //           else if(operators.includes(this.state.currentValue)){
-  //             this.setState(state=>
-  //               ({currentValue: value, formula:state.formula + value}))
-  //             break
-  //           }
-  //           else{
-  //             this.setState(state=>
-  //               ({currentValue:state.currentValue+value,formula: state.formula+value}))
-  //             break
-  //           }
-          
-          
-  
-  //       case '0':
-  //         if(this.state.formula ===''){
-  //           this.setState({currentValue:value,formula:value})
-  //           break
-  //         }
-  //         else if(this.state.formula==='0'){
-  //           break
-  //         }
-  //         else if(this.state.formula.includes("=")){
-  //           this.reset()
-  //           break
-  //         }
-  //         else {
-  //           this.setState(state=>
-  //             ({currentValue:state.currentValue+value,formula: state.formula+value}))
-  //           break
-  //         }
-        
-  //       case '.':
-  //         if(this.state.currentValue ==='0'){
-  //           this.setState(state =>
-  //             ({currentValue: state.currentValue+value, formula:state.currentValue+value}))
-  //           break
-  //         }
-  //         else{
-  //           if(!operators.includes(this.state.currentValue))
-  //           this.setState(state=>
-  //             ({currentValue:state.currentValue+value,formula: state.formula+value}))
-  //           break
-  //         }
-     
-  //       case '+':
-  //       case '*':
-  //       case '/':
-  //         if(this.state.formula.length!==0){
-  //           if(!operators.includes(this.state.currentValue))
-  //           this.setState(state=>
-  //             ({currentValue:value,formula: state.formula+value}))
-  //           break
-  //         }else{
-  //           break
-  //         }
-  
-  //       case '-':
-  //         if(this.state.formula.length!==0){
-  //           if(this.state.currentValue!=='-'){
-  //             this.setState(state=>
-  //               ({currentValue:value,formula: state.formula+value}))
-  //             break
-  //           }else{
-  //             break
-  //           }
-            
-  //         }else{
-  //           this.setState({currentValue:value,formula:value})
-  //           break
-  //         }
-  
-  //       case '=':
-  //         var result= Math.round(1000000000000 * eval(this.state.formula)) / 1000000000000
-  //         this.setState(state=>
-  //           ({currentValue:result, formula:state.formula+value+result}))
-  //         break
-          
-  //       case 'AC':
-  //         this.reset()
-  //         break
-        
-  //       default:
-  //         console.log("default")
-  //         break;
-  //     }    
-  // }
-
   render(){
-    const {formula,curNum,calc,display} = this.state
+    const {formula,display} = this.state
     return (
       <div className="App">
-      <p>{JSON.stringify(this.state)}</p>
-      <p>{formula}</p>
       <div>
         <h2>Welcome to Claculator</h2>
-        <p>Click to calculate</p>
+        <p>This calculator is using immediate execution logic ,cclick to calculate</p>
       </div>
       
         <div className="calculator-container">

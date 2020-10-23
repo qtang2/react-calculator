@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .calculator-container {
@@ -8,7 +11,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 400px;
+  width: 360px;
   color: white;
   border-radius: 10px;
 }
@@ -24,7 +27,7 @@
 .left-container {
   display: flex;
   flex-wrap: wrap;
-  width: 250px;
+  width: 226px;
   color: pink;
 }
 .right-container {
@@ -64,8 +67,8 @@ button:focus {
 
 .large-btn-h {
   margin: 5px;
-  width: 110px;
-  height: 50px;
+  width: 140px;
+  height: 65px;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
   border-bottom-left-radius: 50px;
@@ -75,8 +78,8 @@ button:focus {
 }
 .large-btn-v {
   margin: 5px;
-  height: 110px;
-  width: 50px;
+  height: 130px;
+  width: 65px;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
   border-bottom-left-radius: 50px;
@@ -88,7 +91,7 @@ button:focus {
 
 #display {
   /* border: 1px solid; */
-  width: 220px;
+  width: 310px;
   height: 35px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -99,7 +102,7 @@ button:focus {
 
 #formula {
   /* border: 1px solid; */
-  width: 220px;
+  width: 310px;
   min-height: 25px;
   text-align: end;
   margin-top: 15px;
